@@ -1,0 +1,6 @@
+meccano-builder.iml
+meccano-parts.json
+.idea/*
+!.idea/runConfigurations
+!.idea/codeStyles
+!.idea/inspectionProfiles

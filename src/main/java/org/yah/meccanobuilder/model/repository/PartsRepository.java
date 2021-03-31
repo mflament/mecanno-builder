@@ -34,8 +34,7 @@ public class PartsRepository {
         getSet(setPart.getSetId());
         getPart(setPart.getPartId());
         setPart.getColorIds().forEach(this::getColor);
-        if (setPart.getMaterialId() != null)
-            getMaterial(setPart.getMaterialId());
+        setPart.getMaterialId().ifPresent(this::getMaterial);
         final var sps = setParts.computeIfAbsent(setPart.getId(), id -> new ArrayList<>());
         sps.add(setPart);
     }
@@ -76,10 +75,6 @@ public class PartsRepository {
         return Optional.ofNullable(materials.get(id));
     }
 
-    public List<SetPart> getSetParts(String setId, String partId) {
-        return getSetPart(new SetPartId(setId, partId));
-    }
-
     public List<MeccanoSet> getSets() {
         return List.copyOf(sets.values());
     }
@@ -102,6 +97,24 @@ public class PartsRepository {
 
     public Optional<Part> findPartsByName(String partName) {
         return parts.values().stream().filter(p -> p.getName().equals(partName)).findFirst();
+    }
+
+    public List<SetPart> getSetParts(String setId, String partId) {
+        return getSetPart(new SetPartId(setId, partId));
+    }
+
+    public List<SetPart> getSetParts(String setId) {
+        return setParts.values().stream()
+                .flatMap(List::stream)
+                .filter(sp -> sp.getSetId().equals(setId))
+                .collect(Collectors.toUnmodifiableList());
+    }
+
+    public List<SetPart> getPartSets(String number) {
+        return setParts.values().stream()
+                .flatMap(List::stream)
+                .filter(sp -> sp.getPartId().equals(number))
+                .collect(Collectors.toUnmodifiableList());
     }
 
     private static <K, T> T get(String name, K key, Map<K, T> values) {

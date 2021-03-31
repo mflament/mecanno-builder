@@ -4,6 +4,8 @@ import javax.annotation.Nullable;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
+
 
 public class SetPart implements Entity<SetPart.SetPartId> {
 
@@ -35,9 +37,8 @@ public class SetPart implements Entity<SetPart.SetPartId> {
         return colorIds;
     }
 
-    @Nullable
-    public String getMaterialId() {
-        return materialId;
+    public Optional<String> getMaterialId() {
+        return Optional.ofNullable(materialId);
     }
 
     public int getCount() {

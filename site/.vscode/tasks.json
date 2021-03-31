@@ -6,7 +6,6 @@
       "script": "tsdserver",
       "problemMatcher": [],
       "label": "npm: tsdserver",
-      "detail": "tsdserver -l tcp://localhost:8080",
       "isBackground": true,
       "group": "build"
     },

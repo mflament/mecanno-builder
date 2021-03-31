@@ -6,7 +6,7 @@ import javax.annotation.Nullable;
 
 public class MBServerConfiguration extends Configuration {
 
-    private String assetsServer = "http://localhost:9090";
+    private String assetsServer = "http://localhost:9080";
 
     @Nullable
     public String getAssetsServer() {

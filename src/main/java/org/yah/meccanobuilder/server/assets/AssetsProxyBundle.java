@@ -27,7 +27,7 @@ import java.util.function.Function;
 
 public class AssetsProxyBundle<T> implements ConfiguredBundle<T> {
 
-    public static AssetsProxyBundle<?> create(String assetsServer) {
+    public static <T> AssetsProxyBundle<T> create(String assetsServer) {
         return new AssetsProxyBundle<>(c -> assetsServer);
     }
 
@@ -46,8 +46,8 @@ public class AssetsProxyBundle<T> implements ConfiguredBundle<T> {
         final String server = serverPathFactory.apply(configuration);
         if (server != null) {
             environment.servlets()
-                       .addServlet("assets", new AssetsProxyServlet(server))
-                       .addMapping("/*");
+                    .addServlet("assets", new AssetsProxyServlet(server))
+                    .addMapping("/*");
         }
     }
 

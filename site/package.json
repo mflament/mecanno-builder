@@ -4,7 +4,7 @@
   "description": "Meccano builder",
   "main": "index.js",
   "scripts": {
-    "tsdserver": "tsdserver -l tcp://localhost:8080",
+    "tsdserver": "tsdserver -l tcp://localhost:9080",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
